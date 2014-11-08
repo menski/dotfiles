@@ -1,0 +1,49 @@
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# shell detection functions
+function _is_bash {
+  return $(test -n "$BASH")
+}
+
+function _is_zsh {
+  return $(test -n "$ZSH_NAME")
+}
+
+
+# source libs
+LIBDIR=/home/menski/dotfiles/lib
+if [ -d $LIBDIR ]; then
+  for lib in $LIBDIR/*.sh; do
+    test -r "$lib" && . "$lib"
+  done
+  # bash specific files
+  if _is_bash; then
+    for lib in $LIBDIR/*.bash; do
+    test -r "$lib" && . "$lib"
+    done
+  fi
+  # zsh specific files
+  if _is_zsh; then
+    for lib in $LIBDIR/*.zsh; do
+    test -r "$lib" && . "$lib"
+    done
+  fi
+  unset lib
+fi
+
+# reload config functions
+if _is_bash; then
+  function reload {
+    test -r /etc/bash.bashrc && . /etc/bash.bashrc
+    test -r $HOME/.bashrc && . $HOME/.bashrc
+    return 0
+  }
+elif _is_zsh; then
+  function reload {
+    test -r /etc/zshrc && . /etc/zshrc
+    test -r /etc/zsh/zshrc && . /etc/zsh/zshrc
+    test -r $HOME/.zshrc && . $HOME/.zshrc
+    return 0
+  }
+fi

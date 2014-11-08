@@ -1,0 +1,83 @@
+! Cursor theme
+Xcursor*theme:                Vanilla-DMZ
+
+! Font settings
+Xft.dpi:                      96
+Xft.antialias:                true
+Xft.rgba:                     rgb
+Xft.hinting:                  true
+Xft.hintstyle:                hintfull
+Xft.autohint:                 0
+Xft.lcdfilter:                lcddefault
+
+! URxvt settings
+URxvt*loginShell:             true
+URxvt*cursorUnderline:        false
+URxvt*cursorBlink:            false
+URxvt*scrollBar:              false
+URxvt*scrollBar_right:        false
+URxvt*scrollBar_floating:     false
+URxvt*scrollTtyOutput:        false
+URxvt*scrollWithBuffer:       true
+URxvt*scrollTtyKeypress:      true
+URxvt*font:                   xft:agave:regular:size=10
+URxvt*imFont:                 xft:agave:regular:size=10
+URxvt*boldFont:               xft:agave:regular:size=10
+URxvt*italicFont:             xft:agave:italic:size=10
+URxvt*boldItalicFont:         xft:agave:italic:size=10
+URxvt*internalBorder:         1
+URxvt*fading:                 2
+URxvt*selectToClipboard:      true
+URxvt*saveLines:              10000
+URxvt*iso14755:               false
+URxvt*iso14755_52:            false
+URxvt*perl-ext:
+URxvt*perl-ext-common:        default,clipboard,url-select,font-size
+URxvt*url-select.launcher:    chromium
+URxvt*matcher.button:         1
+URxvt*url-select.underline:   true
+URxvt*keysym.C-i:             perl:url-select:select_next
+URxvt*keysym.Shift-Control-C: perl:clipboard:copy
+URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+URxvt*keysym.M-C-v:           perl:clipboard:paste_escaped
+URxvt*keysym.C-S-Up:          perl:font-size:incglobal
+URxvt*keysym.C-S-Down:        perl:font-size:decglobal
+
+! Colors
+#define blackD                #000000
+#define blackL                #2f2f2f
+#define redD                  #ff0000
+#define redL                  #ff2f2f
+#define greenD                #00ff00
+#define greenL                #2fff2f
+#define yellowD               #eeff00
+#define yellowL               #eeff2f
+#define blueD                 #0000ff
+#define blueL                 #2f2fff
+#define magentaD              #ff00ee
+#define magentaL              #ff2fee
+#define cyanD                 #00eeff
+#define cyanL                 #2feeff
+#define whiteD                #d1d1d1
+#define whiteL                #ffffff
+
+
+URxvt*background:             whiteL
+URxvt*foreground:             blackD
+
+URxvt*color0:                 blackD
+URxvt*color8:                 blackL
+URxvt*color1:                 redD
+URxvt*color9:                 redL
+URxvt*color2:                 greenD
+URxvt*color10:                greenL
+URxvt*color3:                 yellowD
+URxvt*color11:                yellowL
+URxvt*color4:                 blueD
+URxvt*color12:                blueL
+URxvt*color5:                 magentaD
+URxvt*color13:                magentaL
+URxvt*color6:                 cyanD
+URxvt*color14:                cyanL
+URxvt*color7:                 whiteD
+URxvt*color15:                whiteL
