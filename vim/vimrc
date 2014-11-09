@@ -1,0 +1,159 @@
+set nocompatible
+let mapleader = ","
+
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=/etc/vim
+set rtp+=/etc/vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'mileszs/ack.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-commentary'
+Plugin 'scrooloose/syntastic'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+
+" Enable syntax highlighting
+syntax on
+filetype plugin indent on
+
+" Colorscheme
+colorscheme menski
+
+" Gui options
+set guioptions=aeg
+
+" Enable mouse
+set mouse=a
+
+" Add line numbers
+set number
+set history=50
+set ruler
+
+
+" Now we set some defaults for the editor
+set ruler                       " show the cursor position all the time
+
+" Suffixes that get lower priority when doing tab completion for filenames.
+" These are files we are not likely to want to edit or read.
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
+
+" Set encoding
+set encoding=utf-8
+
+" Set statusline
+set laststatus=2
+set statusline=%<%n:%f\ %y[%{&ff}]%r%m%=%-19(%3l,%02c%03V%)%7(%P%)\ [%LL]\ [%<%1.20{getcwd()}]
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Enable cursorline
+set cursorline
+
+" Whitespace stuff
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+noremap <F4> gwip
+
+" Search related settings
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Wildmenu settings
+set wildmenu
+set wildmode=longest:full
+
+" Map Ctrl+l to clear highlighted searches
+nnoremap <silent> <leader>l :<C-u>nohlsearch<CR><C-l>
+
+" Show trailing spaces and highlight hard tabs
+set list listchars=tab:»·,trail:·
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Disable code folding
+set nofoldenable
+
+" Directories for swp files
+set backupdir=~/.local/share/vim/backup/
+set directory=~/.local/share/vim/swap/
+if exists("&undofile")
+  set undofile
+  set undodir=~/.local/share/vim/undo
+endif
+
+" Split settings
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
+" Strip trailing whitespaces on each save
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+let g:toggleStripTrailingWhitespaces = 0
+function! ToggleStripTrailingWhitespaces(...)
+  if a:0 == 1 "toggle behaviour
+    let g:toggleStripTrailingWhitespaces = 1 - g:toggleStripTrailingWhitespaces
+  endif
+
+  if g:toggleStripTrailingWhitespaces == 0 "normal action, do the hi
+    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+  else
+    autocmd! BufWritePre
+  endif
+endfunction
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+map <F12> :call ToggleStripTrailingWhitespaces(1)<CR>
+
+autocmd FileType markdown setlocal spell
+
+" make uses real tabs
+au FileType make set noexpandtab
+
+let g:syntastic_auto_loc_list = 0
+let g:ycm_confirm_extra_conf = 0
+
+" make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79 colorcolumn=80
+let g:syntastic_python_checkers = ['pylama']
+let g:syntastic_java_checkers = ['']
+
+" simple TODO list
+command Todo Ack! -i 'TODO|FIXME|XXX'
+
+" CtrlP Tag finding
+noremap <F9> :CtrlPTag<CR>
+noremap <C-B> :CtrlPBuffer<CR>
+
+" close buffer without close window
+nnoremap <leader>d :bprevious<CR>:bdelete #<CR>
+
+" enable per project vimrc  http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/
+set exrc
+set secure
