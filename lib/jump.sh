@@ -26,4 +26,6 @@ function _j {
     return 0
 }
 
-complete -F _j j unmark
+if _is_bash; then
+  complete -F _j j unmark
+fi

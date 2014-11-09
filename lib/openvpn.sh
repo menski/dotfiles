@@ -53,4 +53,6 @@ function _vpn {
   return 0
 }
 
-complete -F _vpn vpn
+if _is_bash; then
+  complete -F _vpn vpn
+fi

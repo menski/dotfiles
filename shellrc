@@ -1,6 +1,9 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# disable scroll lock
+stty -ixon -ixoff
+
 # shell detection functions
 function _is_bash {
   return $(test -n "$BASH")
