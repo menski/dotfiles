@@ -144,6 +144,9 @@ au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79 colorco
 let g:syntastic_python_checkers = ['pylama']
 let g:syntastic_java_checkers = ['']
 
+" gitcommit
+au FileType gitcommit set colorcolumn=70 spell
+
 " simple TODO list
 command Todo Ack! -i 'TODO|FIXME|XXX'
 
