@@ -10,6 +10,9 @@ alias ....='cd ../../..'
 alias psgrep='ps aux | grep -v grep | grep -i'
 alias o='xdg-open'
 alias qmv='qmv --format=do'
+alias jdk6='sudo archlinux-java set java-6-jdk'
+alias jdk7='sudo archlinux-java set java-7-jdk'
+alias jdk8='sudo archlinux-java set java-8-jdk'
 
 # ls
 alias l='ls -lh'
