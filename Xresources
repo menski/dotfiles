@@ -45,22 +45,21 @@ URxvt*keysym.C-S-Down:        perl:font-size:decglobal
 
 ! Colors
 #define blackD                #000000
-#define blackL                #2f2f2f
-#define redD                  #ff0000
-#define redL                  #ff2f2f
-#define greenD                #00ff00
-#define greenL                #2fff2f
-#define yellowD               #eeff00
-#define yellowL               #eeff2f
-#define blueD                 #0000ff
-#define blueL                 #2f2fff
-#define magentaD              #ff00ee
-#define magentaL              #ff2fee
-#define cyanD                 #00eeff
-#define cyanL                 #2feeff
-#define whiteD                #d1d1d1
+#define blackL                #444444
+#define redD                  #af0000
+#define redL                  #cc0000
+#define greenD                #008700
+#define greenL                #00a300
+#define yellowD               #cfbd37
+#define yellowL               #c9b624
+#define blueD                 #005faf
+#define blueL                 #006fcc
+#define magentaD              #870087
+#define magentaL              #a300a3
+#define cyanD                 #008787
+#define cyanL                 #00a3a3
+#define whiteD                #b0b0b0
 #define whiteL                #ffffff
-
 
 URxvt*background:             whiteL
 URxvt*foreground:             blackD
@@ -81,3 +80,4 @@ URxvt*color6:                 cyanD
 URxvt*color14:                cyanL
 URxvt*color7:                 whiteD
 URxvt*color15:                whiteL
+
