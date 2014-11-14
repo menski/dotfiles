@@ -13,6 +13,7 @@ alias qmv='qmv --format=do'
 alias jdk6='sudo archlinux-java set java-6-jdk'
 alias jdk7='sudo archlinux-java set java-7-jdk'
 alias jdk8='sudo archlinux-java set java-8-jdk'
+alias agless='ag --pager "less -R"'
 
 # ls
 alias l='ls -lh'
