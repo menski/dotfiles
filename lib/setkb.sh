@@ -1,1 +1,1 @@
-setxkbmap de
+setxkbmap de nodeadkeys
