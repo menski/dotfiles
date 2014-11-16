@@ -79,7 +79,7 @@ GIT_PS1_SHOWUNTRACKEDFILES="Y"
 GIT_PS1_SHOWUPSTREAM="auto"
 
 DEFAULT_USER=menski
-PS_USER="$(if [ ${EUID} == 0 ]; then echo \"\[$Red\]\u\[$Color_Off\]:\"; elif [ "$USER" != "$DEFAULT_USER" ]; then echo '\u:'; fi)"
+PS_USER="$(if [ ${EUID} == 0 ]; then echo \\[$Red\\]\\u\\[$Color_Off\\]:; elif [ \"$USER\" != \"$DEFAULT_USER\" ]; then echo \\u:; fi)"
 PS_RC="\$(rc=\$?; test \$rc != 0 && echo \"\[$Red\]\$rc\[$Color_Off\] \")"
 PS_GIT="\$(__git_ps1 \" (%s)\")"
 PS1="${PS_USER}\W${PS_GIT} ${PS_RC}\$ "
