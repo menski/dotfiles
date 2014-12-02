@@ -37,16 +37,18 @@ fi
 
 # reload config functions
 if _is_bash; then
+  test -r $HOME/.bashrc && . $HOME/.bashrc
+
   function reload {
     test -r /etc/bash.bashrc && . /etc/bash.bashrc
-    test -r $HOME/.bashrc && . $HOME/.bashrc
     return 0
   }
 elif _is_zsh; then
+  test -r $HOME/.zshrc && . $HOME/.zshrc
+
   function reload {
     test -r /etc/zshrc && . /etc/zshrc
     test -r /etc/zsh/zshrc && . /etc/zsh/zshrc
-    test -r $HOME/.zshrc && . $HOME/.zshrc
     return 0
   }
 fi
