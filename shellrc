@@ -15,7 +15,7 @@ function _is_zsh {
 
 
 # source libs
-LIBDIR=/home/menski/dotfiles/lib
+LIBDIR=/etc/dotfiles/lib
 if [ -d $LIBDIR ]; then
   for lib in $LIBDIR/*.sh; do
     test -r "$lib" && . "$lib"
