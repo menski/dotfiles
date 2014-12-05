@@ -19,7 +19,7 @@ function ps_user {
 }
 
 function ps_host {
-  if [ -z "$TMUX" -a "$TERM" != "screen" ]; then
+  if [ -z "$TMUX" ]; then
     echo \\h
   fi
 }
