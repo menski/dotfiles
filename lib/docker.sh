@@ -31,7 +31,12 @@ function dbash() {
   docker exec -it $1 /bin/bash
 }
 
-alias ddangling='docker rmi $(docker images -qf dangling=true)'
+function ddangling() {
+  local dangling=$(docker images -qf dangling=true)
+  if [ -n "$dangling" ]; then
+    docker rmi $dangling
+  fi
+}
 
 function dmanage() {
   local action=$1
