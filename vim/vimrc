@@ -1,30 +1,21 @@
 set nocompatible
-let mapleader = ","
 
-filetype off
-
-" set the runtime path to include Vundle and initialize
+" add dotfiles/vim to runtime path
 set rtp+=/etc/dotfiles/vim
-set rtp+=/etc/dotfiles/vim/bundle/Vundle.vim
-call vundle#begin('/etc/dotfiles/vim/bundle')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('/etc/dotfiles/vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'dyng/ctrlsf.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/syntastic'
+Plug 'fatih/vim-go'
 
-Plugin 'mileszs/ack.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-commentary'
-Plugin 'scrooloose/syntastic'
+call plug#end()
 
-" All of your Plugins must be added before the following line
-call vundle#end()
-
-" Enable syntax highlighting
-syntax on
-filetype plugin indent on
+" set leader to comma
+let mapleader = ","
 
 " Colorscheme
 colorscheme menski
@@ -38,21 +29,12 @@ set mouse=a
 " Add line numbers
 set number
 set history=50
-set ruler
-
-
-" Now we set some defaults for the editor
-set ruler                       " show the cursor position all the time
 
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
 
-" Set encoding
-set encoding=utf-8
-
 " Set statusline
-set laststatus=2
 set statusline=%<%n:%f\ %y[%{&ff}]%r%m%=%-19(%3l,%02c%03V%)%7(%P%)\ [%LL]\ [%<%1.20{getcwd()}]
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -67,34 +49,33 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-noremap <F4> gwip
 
 " Search related settings
-set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 
 " Wildmenu settings
-set wildmenu
 set wildmode=longest:full
-
-" Map Ctrl+l to clear highlighted searches
-nnoremap <silent> <leader>l :<C-u>nohlsearch<CR><C-l>
-
-" Show trailing spaces and highlight hard tabs
-set list listchars=tab:»·,trail:·
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
 
 " Disable code folding
 set nofoldenable
 
 " Directories for swp files
+if !isdirectory($HOME.'/.local/share/vim/backup')
+    call mkdir($HOME.'/.local/share/vim/backup', 'p')
+endif
 set backupdir=~/.local/share/vim/backup/
+
+if !isdirectory($HOME.'/.local/share/vim/swap')
+    call mkdir($HOME.'/.local/share/vim/swap', 'p')
+endif
 set directory=~/.local/share/vim/swap/
+
 if exists("&undofile")
+  if !isdirectory($HOME.'/.local/share/vim/undo')
+      call mkdir($HOME.'/.local/share/vim/undo', 'p')
+  endif
   set undofile
   set undodir=~/.local/share/vim/undo
 endif
