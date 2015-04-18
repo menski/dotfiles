@@ -14,6 +14,7 @@ alias jdk6='sudo archlinux-java set java-6-jdk'
 alias jdk7='sudo archlinux-java set java-7-jdk'
 alias jdk8='sudo archlinux-java set java-8-jdk'
 alias agless='ag --pager "less -R"'
+alias issh="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile=/dev/null'"
 
 # ls
 alias l='ls -lh'
