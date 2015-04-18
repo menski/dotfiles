@@ -13,6 +13,13 @@ function __running_containers() {
   COMPREPLY=( $(compgen -W "${names[*]} ${containers[*]}" -- "$cur") )
 }
 
+function __docker_images() {
+  local images="$(__docker_q images -a --no-trunc | awk 'NR>1 { print $3; if ($1 != "<none>") { print $1; print $1":"$2 } }')"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=( $(compgen -W "$images" -- "$cur") )
+  __ltrim_colon_completions "$cur"
+}
+
 function dip() {
   __docker_q inspect --format '{{ .NetworkSettings.IPAddress }}' $1
 }
@@ -27,8 +34,12 @@ function dssh() {
   ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile=/dev/null' ${username}@${ip}
 }
 
+function dsh() {
+  docker run -it --rm $1 /bin/bash -l
+}
+
 function dbash() {
-  docker exec -it $1 /bin/bash
+  docker exec -it $1 /bin/bash -l
 }
 
 function ddangling() {
@@ -107,5 +118,6 @@ function _dmanage() {
 
 if _is_bash; then
   complete -F __running_containers dip dssh dbash
+  complete -F __docker_images dsh
   complete -F _dmanage dmanage
 fi
