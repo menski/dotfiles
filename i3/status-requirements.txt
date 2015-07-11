@@ -1,0 +1,5 @@
+basiciw==0.2.2
+colour==0.1.1
+i3pystatus==3.33
+netifaces==0.10.4
+psutil==3.0.1
