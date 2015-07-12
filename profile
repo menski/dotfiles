@@ -14,7 +14,7 @@ fi
 
 # start keychain for ssh
 if type keychain > /dev/null 2> /dev/null; then
-  eval `keychain --agents ssh -Q -q --nogui --eval id_rsa id_ed25519`
+  eval `keychain -Q -q --nogui --eval`
 fi
 
 # start X for tty1
