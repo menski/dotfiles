@@ -1,0 +1,14 @@
+# do not bell on tab-completion
+set bell-style none
+
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+
+set completion-ignore-case on
+set menu-complete-display-prefix on
+set show-all-if-ambiguous on
+
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
