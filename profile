@@ -14,7 +14,7 @@ fi
 
 # start keychain for ssh
 if type keychain > /dev/null 2> /dev/null; then
-  eval `keychain -Q -q --nogui --eval`
+  eval `keychain -Q -q --nogui --agents gpg,ssh --eval`
 fi
 
 # start X for tty1
