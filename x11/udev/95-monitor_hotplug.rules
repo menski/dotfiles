@@ -1,0 +1,2 @@
+# Monitor hotplugin from http://ruedigergad.com/2012/01/28/hotplug-an-external-screen-to-your-laptop-on-linux/
+ACTION=="change", SUBSYSTEM=="drm", RUN+="/usr/local/bin/hotplug_monitor.sh"
