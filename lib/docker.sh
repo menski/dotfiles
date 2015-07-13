@@ -116,8 +116,57 @@ function _dmanage() {
   COMPREPLY=( $(compgen -W "${options[*]}" -- "$cur") )
 }
 
+function __db_port() {
+  case "$1" in
+    mariadb)
+      echo 3306
+      ;;
+    mysql)
+      echo 3306
+      ;;
+    postgresql)
+      echo 5432
+      ;;
+    db2)
+      echo 50000
+      ;;
+    oracle)
+      echo 1521
+      ;;
+    sqlserver)
+      echo 1433
+      ;;
+  esac
+}
+
+function ddb() {
+  local db=$1
+  local tag=${2:latest}
+  local db_port=$(__db_port $db)
+  local image=camunda-ci1.local:5000/camunda-ci-${db}:${tag}
+  local privileged=""
+  __docker_q inspect $db
+  if [ $? -eq 0 ]; then
+    echo "deleting '$db' container"
+    __docker_q rm -f -v $db
+  fi
+  if [ "$db" == "oracle" -o "$db" == "db2" ]; then
+    privileged="--privileged"
+  fi
+  docker run -d -t --name $db -p $db_port:$db_port $privileged $image
+}
+
+function _ddb() {
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  if [ $COMP_CWORD -eq 1 ]; then
+    local options=( "mariadb mysql postgresql oracle db2" )
+  fi
+  COMPREPLY=( $(compgen -W "${options[*]}" -- "$cur") )
+}
+
 if _is_bash; then
   complete -F __running_containers dip dssh dbash
   complete -F __docker_images dsh
   complete -F _dmanage dmanage
+  complete -F _ddb ddb
 fi
