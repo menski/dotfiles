@@ -150,16 +150,17 @@ function ddb() {
     echo "deleting '$db' container"
     __docker_q rm -f -v $db
   fi
-  if [ "$db" == "oracle" -o "$db" == "db2" ]; then
+  if [ "$db" == "oracle" -o "$db" == "db2" -o "$db" == "sqlserver" ]; then
     privileged="--privileged"
   fi
   docker run -d -t --name $db -p $db_port:$db_port $privileged $image
+  docker inspect --format '{{ .Node.IP }}' $db
 }
 
 function _ddb() {
   local cur=${COMP_WORDS[COMP_CWORD]}
   if [ $COMP_CWORD -eq 1 ]; then
-    local options=( "mariadb mysql postgresql oracle db2" )
+    local options=( "mariadb mysql postgresql oracle db2 sqlserver" )
   fi
   COMPREPLY=( $(compgen -W "${options[*]}" -- "$cur") )
 }
