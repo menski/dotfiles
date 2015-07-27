@@ -23,4 +23,6 @@ unclutter -noevents -root &
 
 pulseaudio --start
 
+setxkbmap -rules evdev -model pc104 -layout us -variant altgr-intl -option ctrl:nocaps
+
 exec i3
