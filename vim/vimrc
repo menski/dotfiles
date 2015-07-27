@@ -12,6 +12,7 @@ Plug 'tpope/vim-commentary'
 Plug 'scrooloose/syntastic'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -142,3 +143,6 @@ nnoremap <leader>d :bprevious<CR>:bdelete #<CR>
 " enable per project vimrc  http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/
 set exrc
 set secure
+
+map <C-n> :NERDTreeToggle<CR>
+inoremap \fn <C-R>=expand("%:t:r")<CR>
