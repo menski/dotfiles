@@ -21,7 +21,7 @@ autocutsel -fork &
 
 unclutter -noevents -root &
 
-pulseaudio --start
+twmnd &
 
 setxkbmap -rules evdev -model pc104 -layout us -variant altgr-intl -option ctrl:nocaps
 

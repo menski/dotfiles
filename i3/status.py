@@ -1,6 +1,7 @@
 from os.path import exists
 
 from i3pystatus import Status
+from i3pystatus.mail.maildir import MaildirMail
 
 # colors
 default='#EDEDED'
@@ -9,6 +10,16 @@ yellow='#FFD700'
 red='#EE0000'
 
 status = Status(standalone=True)
+
+status.register('mail',
+        color = default,
+        color_unread = yellow,
+        format = '{unread}',
+        format_plural = '{unread}',
+        backends = [
+            MaildirMail(directory = '/home/menski/.maildir/camunda/INBOX/')
+        ])
+
 
 status.register('clock',
         format='%a, %-d. %b %H:%M',
